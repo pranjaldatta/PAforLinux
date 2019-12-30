@@ -1,7 +1,9 @@
-import bs4
+from bs4 import BeautifulSoup
 import webbrowser
+import requests
 
-class search:
+
+class Search:
     """
 
     An object that handles all the search operations. Includes general search operations. 
@@ -15,6 +17,29 @@ class search:
             --searchFor: query that has to be searched for
     -> display: displays a search result on the browser            
 
-
-
     """
+
+    def search(self, searchFor):
+        """
+
+        Function that is used to search for a query and return the search results
+
+        main->cnt->mw->rcnt->col(class) -> center_col->res->search->rso->bkwMgd
+        """
+        url = "https://www.google.com/search?q=India"
+        r = requests.get(url)
+
+        soup = BeautifulSoup(r.content, 'html.parser')
+        main_data = soup.find("div", attrs={'id':'main'})
+        print(main_data.prettify())
+        
+
+        
+        
+        """.find("div", attrs={'id':'cnt'}).find("div", attrs={'id':'mw'})
+        search_data = soup.find("div", attrs={'id':'rcnt'}).find("div", attrs={'class':'col'}).find("div", attrs={'id':'center_col'})
+        search_data = soup.find("div", attrs={'id':'res'}).find("div", attrs={'id':'search'}).find("div", attrs={'id':'rso'})
+        """
+
+s = Search()
+s.search("abcd")
