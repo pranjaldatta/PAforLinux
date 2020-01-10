@@ -1,11 +1,12 @@
 {
     "available_tasks": {
-            "demo": "demo_module.py",           
-            "browse":"browser_search.py",               
-            "check connection": "check_connection.py",
-            "play": "play.py",
-            "define": "dictionary.py",
-            "wiki": "wikipedia.py",      
-            "battery": "battery.py"  
+        "demo": "demo_module.py",
+        "browse": "browser_search.py",
+        "check connection": "check_connection.py",
+        "play": "play.py",
+        "define": "dictionary.py",
+        "wiki": "wikipedia.py",
+        "battery": "battery.py",
+        "sample task": "sample_task"
     }
 }
