@@ -49,7 +49,11 @@ class CommandLineAPI:
                       specific scheme required by the task 
 
         """ 
-        inp = input(self._colors[color] + prompt + self._colors["reset"] + "\n")
+        if prompt is None:
+            inp = input()
+        else:
+            inp = input(self._colors[color] + prompt + self._colors["reset"] + "\n")
+
         return inp.strip()
 
     def cmd_args_num(self, prompt, dtype=int, min=None, max=None, color=None):

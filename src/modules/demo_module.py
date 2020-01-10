@@ -1,3 +1,5 @@
+import argparse
+
 class demo_task:
     
     def __init__(self, cli_api):
@@ -9,4 +11,8 @@ class demo_task:
         self.cli_api.show(color= "cyan",text=text)
         return 200
 
-
+parser = argparse.ArgumentParser()
+parser.add_argument("-c", "--cli", help="Object to handle command line operations", action="store")
+args = parser.parse_args()
+demo_tsk = demo_task(args.cli)
+demo_tsk.demo_task_func()

@@ -1,8 +1,8 @@
 import os
 from colorama import Fore
 from CommandLine import CommandLineAPI
-from modules.demo_module import demo_task
 from cmd import Cmd
+from TaskManager import TaskManager
 
 class Assistant:
     """
@@ -14,9 +14,11 @@ class Assistant:
     """
     def __init__(self):
         self.cli_api = None
+        self.task_manager = None
 
-    def _init_cli_api(self):
-        self.cli_api = CommandLineAPI()    
+    #def _init_cli_api(self):
+        #self.cli_api = CommandLineAPI()
+        #self.task_manager = TaskManager(self.cli_api)    
 
     def precmd(self, init=True):
         """
@@ -33,14 +35,17 @@ class Assistant:
         if init == False:
             self.cli_api.show(self.cli_api._prompt, "blue")
         inp = input()
+        inp = inp.lower()
         #analyse inp for task . For now we are using a dummy function for demo
         #command analysis code here
         #self.execute_task(None, demo_only=inp)
         
-        task = inp #for now. its actually the result of the nlp analysis
-        return task
-
-    def execute_task(self, task, demo_only):
+        task = self.task_manager.check_for_predefined_cmd(inp)
+        #if isinstance(task, int):
+            #call nlp model
+            #task = ...      
+        return (task, inp)
+    def execute_task(self, task, params):
         """
 
         Function that is used to execute a particular task.
@@ -54,11 +59,8 @@ class Assistant:
                      defined by a global scheme.
 
         """ 
-         
-        demo = demo_task(self.cli_api)
-        code = demo.demo_task_func()
-        
-
+        #print("task:", task) 
+        code = self.task_manager.execute_task_module(task, params)
         return code
 
     def postcmd(self, code):
@@ -69,8 +71,10 @@ class Assistant:
         :param code: success or failure code for the given task
 
         """
-        if code != 200:
+        if code == 126: #unkown error
             self.cli_api.show("Unknown Error", color="red")
+        elif code == 127:
+            self.cli_api.show("Sorry! I cannot perform this task yet.", color="red")
         else:
             self.precmd(False)    
 
@@ -83,10 +87,15 @@ class Assistant:
         
         try:          
             self.cli_api = CommandLineAPI()
-            init_user_response = self.precmd()
+            self.task_manager = TaskManager(self.cli_api)
+            resp_code = 127
+            task_and_inp = self.precmd()
             while True:
-                resp_code = self.execute_task(init_user_response)
+                if isinstance(task_and_inp[0], int) == False:
+                    resp_code = self.execute_task(task_and_inp[0], task_and_inp[1])                
                 self.postcmd(resp_code)
+                task_and_inp = self.precmd(init=False)
+
         except KeyboardInterrupt:
             self.cli_api.exit()   
    
