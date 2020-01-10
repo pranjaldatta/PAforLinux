@@ -74,17 +74,14 @@ class Assistant:
         if code == 126: #unkown error
             self.cli_api.show("Unknown Error", color="red")
         elif code == 127:
-            self.cli_api.show("Sorry! I cannot perform this task yet.", color="red")
-        else:
-            self.precmd(False)    
+            self.cli_api.show("Sorry! I cannot perform this task yet.", color="red")    
 
     def main(self):
         """
 
         The main controller function. It coordinates all activities.
 
-        """
-        
+        """        
         try:          
             self.cli_api = CommandLineAPI()
             self.task_manager = TaskManager(self.cli_api)
