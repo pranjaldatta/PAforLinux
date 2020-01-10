@@ -5,6 +5,7 @@
             "check connection": "check_connection.py",
             "play": "play.py",
             "define": "dictionary.py",
-            "wiki": "wikipedia.py"        
+            "wiki": "wikipedia.py",      
+            "battery": "battery.py"  
     }
 }

@@ -37,9 +37,9 @@ class dictionary:
                 if len(results['lexicalEntries']) > 1:
                     self.cli_api.show(text="------------------------------------", color="cyan")
                 self.cli_api.show(res['entries'][0]['senses'][0]['definitions'][0])
-
+        return 0
             
 def eval(cli_api, params):
     dic = dictionary(cli_api, params)
-    dic.main()
+    return dic.main()
 

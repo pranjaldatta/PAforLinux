@@ -49,10 +49,11 @@ class wiki:
             index = self.cli_api.cmd_args_text(prompt=None)
             self._search(None,resp_list,index=index)
 
+        return 0
                   
 
 
 
 def eval(cli_api, params):
     wiki_obj = wiki(cli_api, params)
-    wiki_obj.main()
+    return wiki_obj.main()
