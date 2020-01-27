@@ -1,5 +1,6 @@
 from cmd import Cmd
 from colorama import Fore
+import pyttsx3 as tts
 
 class CommandLineAPI:
     """
@@ -22,9 +23,15 @@ class CommandLineAPI:
             "default" : Fore.WHITE,
             "magenta" : Fore.MAGENTA #For task prompts
         }
+        self.tts_engine = tts.init()
+        self.speak = True
+        self.tts_engine.setProperty("rate", 168)
         print(self._colors["blue"] + self._init_prompt + self._colors["reset"])
+        if self.speak == True:
+            self.tts_engine.say(self._init_prompt)
+            self.tts_engine.runAndWait()       
 
-    def show(self, text, color=None):
+    def show(self, text, color=None, speakOnly=None):
         """
 
         This functions is used to display everything into the command
@@ -37,6 +44,14 @@ class CommandLineAPI:
         if color is None:
             color = "default"
         print(self._colors[color] + text + self._colors["reset"])
+
+        if self.speak == True:
+            if speakOnly is not None:
+                self.tts_engine.say(speakOnly)
+                self.tts_engine.runAndWait()
+            else:    
+                self.tts_engine.say(text)
+                self.tts_engine.runAndWait()
 
     def cmd_args_text(self, prompt, color=None):
         """
@@ -92,6 +107,9 @@ class CommandLineAPI:
 
     def exit(self):
         print(self._colors['blue'] + "Goodbye! See Ya later!" + self._colors['reset'])
+        if self.speak == True:
+            self.tts_engine.say("Goodbye! See Ya later!")
+            self.tts_engine.runAndWait()        
     
 
 """
