@@ -1,7 +1,7 @@
 import webbrowser
 from .check_connection import check_connection
 import argparse
-
+import subprocess
 
 
 class browser_search:
@@ -26,6 +26,8 @@ class browser_search:
         return 0
 
 def eval(cli_api, args):
+    
     bs = browser_search(cli_api, args)
     resp_code = bs.main()
     return resp_code
+ 
