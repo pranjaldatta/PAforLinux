@@ -1,0 +1,7 @@
+
+.vscode
+
+*.pyc
+*.cpython-37.pyc
+
+src/modules/__pycache__/*.cpython-37.pyc
