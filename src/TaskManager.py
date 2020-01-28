@@ -18,7 +18,7 @@ class TaskManager:
     def __init__(self, cli_api, user_input = None):
         self.cli_api = cli_api
         self.user_input = user_input
-        with open("src/modules/tasks.json") as f:
+        with open(os.path.dirname(__file__)+"/modules/tasks.json") as f:
             self.data = json.load(f)
 
     def check_for_predefined_cmd(self, cmd):
