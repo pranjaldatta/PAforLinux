@@ -1,7 +1,7 @@
 #!/bin/bash
 
 eval "$(conda shell.bash hook)"
-conda activate linuxPA
+conda activate LinuxPA
 BASEDIR=$(readlink -f "$0")
 BASEDIR=$(dirname $BASEDIR)
 python3 $BASEDIR/src/Assistant.py
