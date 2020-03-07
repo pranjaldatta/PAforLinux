@@ -1,7 +1,7 @@
 {
     "dictionary.py" : {
-        "app_id": "72c1f5dd",
-        "app_key": "0dd554860cbef327570720d5b4d244b0",
+        "app_id": "<app_id>",
+        "app_key": "<app_key>",
         "base_url": "https://od-api.oxforddictionaries.com/api/v2"
     }
 }

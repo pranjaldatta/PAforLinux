@@ -3,6 +3,8 @@ A command-line based personal assistant for Linux
 
 Be sure to check out [docs](https://github.com/pranjaldatta/PAforLinux/tree/master/docs)
 
+PS: Star the repository if you like the project!
+
 ### Requirements
 
 * Debian based distro
@@ -24,3 +26,34 @@ cd PAforLinux
 ```
 ./env.sh
 ```
+
+### Usage
+
+After installation has been completed successfully, open up the terminal. Run the following command,
+```
+Assistant
+```
+
+Personal Assistant commands can be executed by running, 
+
+<task> <Arguments> 
+  
+Example:
+
+To search something in the browser,
+```
+browse india
+```
+
+To play an YouTube video,
+```
+play "barishein"
+```
+
+To look for definitions of a word,
+```
+define flabbergasted
+```
+
+
+

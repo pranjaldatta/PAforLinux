@@ -1,6 +1,6 @@
 conda env create -f env.yaml
 eval "$(conda shell.bash hook)"
-conda activate test
+conda activate LinuxPA
 pip install pyttsx3==2.71
 BASEDIR=$(readlink -f "$0")
 BASEDIR=$(dirname $BASEDIR)

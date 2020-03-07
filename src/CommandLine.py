@@ -11,8 +11,16 @@ class CommandLineAPI:
     """
 
     def __init__(self):
+        
         self._init_prompt = "Hello! How may I help you?"
-        self._prompt = "Can I be of more assistance?"
+        f = open("./utils/prompts.txt") 
+        lines = f.read()
+        lines = lines.split(",")
+        lines = [x.strip() for x in lines]
+        lines = lines[:len(lines)-1]   
+        f.close()
+        self._prompt = lines  
+    
         self._prompt_char = "->"
         self._colors = {
             "red" : Fore.RED,  #For errors
@@ -31,7 +39,7 @@ class CommandLineAPI:
             self.tts_engine.say(self._init_prompt)
             self.tts_engine.runAndWait()       
 
-    def show(self, text, color=None, speakOnly=None):
+    def show(self, text, dontSpeak=False, color=None, speakOnly=None):
         """
 
         This functions is used to display everything into the command
@@ -39,19 +47,29 @@ class CommandLineAPI:
 
         :param text: text that has to displayed.
         :param color: color that the text has to be printed in.
+        :param dontSpeak: disables speech temoprarily
+        :speakOnly: specific text thats spoken
 
         """
         if color is None:
             color = "default"
         print(self._colors[color] + text + self._colors["reset"])
 
-        if self.speak == True:
-            if speakOnly is not None:
-                self.tts_engine.say(speakOnly)
-                self.tts_engine.runAndWait()
-            else:    
-                self.tts_engine.say(text)
-                self.tts_engine.runAndWait()
+        if dontSpeak == True:
+            self.speak = False
+        try: 
+            if self.speak == True:
+                if speakOnly is not None:
+                    self.tts_engine.say(speakOnly)
+                    self.tts_engine.runAndWait()
+                else:    
+                    self.tts_engine.say(text)
+                    self.tts_engine.runAndWait()
+        except KeyboardInterrupt:
+            pass 
+
+        if dontSpeak == True:
+            self.speak = True        
 
     def cmd_args_text(self, prompt, color=None):
         """
@@ -65,7 +83,7 @@ class CommandLineAPI:
 
         """ 
         if prompt is None:
-            inp = input()
+            inp = input("\n")
         else:
             inp = input(self._colors[color] + prompt + self._colors["reset"] + "\n")
 
@@ -106,13 +124,9 @@ class CommandLineAPI:
 
 
     def exit(self):
-        print(self._colors['blue'] + "Goodbye! See Ya later!" + self._colors['reset'])
+        print(self._colors['blue'] + "Goodbye! See Ya later!\n" + self._colors['reset'])
         if self.speak == True:
             self.tts_engine.say("Goodbye! See Ya later!")
             self.tts_engine.runAndWait()        
     
 
-"""
-cmdLine = CommandLineAPI()
-val = cmdLine.cmd_args_num("enter a float", dtype=int, min=10.0, color="red")
-"""
