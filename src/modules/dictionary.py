@@ -15,7 +15,7 @@ class dictionary:
         self.appID = None
         self.appKey = None
         self.base_url = None
-        with open("/home/pranjal/Projects/PAforLinux/src/modules/keys.json") as f:
+        with open(os.path.dirname(__file__)+"/keys.json") as f:
             data = json.load(f)
             self.appID = data[os.path.basename(__file__)]["app_id"]
             self.appKey = data[os.path.basename(__file__)]["app_key"]
