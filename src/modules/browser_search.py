@@ -22,7 +22,7 @@ class browser_search:
             self.cli_api.show("Error: No Internet Connection Found!", "red")
             return 1   
         _, self.query = self.query.split(" ", 1)
-        webbrowser.open("https://www.google.com/search?q={}".format(self.query), 1)
+        webbrowser.open("https://www.google.com/search?q={}".format(self.query), 2)
         return 0
 
 def eval(cli_api, args):

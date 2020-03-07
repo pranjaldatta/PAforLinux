@@ -16,7 +16,7 @@ class Play:
             self.cli_api.show("Error: No Internet Connection Found!", "red")
             return 1
         _, query = self.query.split(" ", 1)
-        webbrowser.open("https://www.youtube.com/results?search_query={}".format(query), 1)
+        webbrowser.open("https://www.youtube.com/results?search_query={}".format(query), 2)
         return 0
 
 def eval(cli_api, params):
