@@ -3,6 +3,7 @@ from colorama import Fore
 from CommandLine import CommandLineAPI
 from cmd import Cmd
 from TaskManager import TaskManager
+from random import randint
 
 class Assistant:
     """
@@ -33,13 +34,13 @@ class Assistant:
 
         """ 
         if init == False:
-            self.cli_api.show(self.cli_api._prompt, "blue")
+            self.cli_api.show(self.cli_api._prompt[randint(0, len(self.cli_api._prompt) - 1)], color="blue")
         inp = input()
         inp = inp.lower()
         #analyse inp for task . For now we are using a dummy function for demo
         #command analysis code here
         #self.execute_task(None, demo_only=inp)
-        
+
         task = self.task_manager.check_for_predefined_cmd(inp)
         #if isinstance(task, int):
             #call nlp model
