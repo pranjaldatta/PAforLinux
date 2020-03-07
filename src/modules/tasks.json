@@ -7,6 +7,7 @@
         "wiki": "wikipedia.py",
         "battery": "battery.py",
         "sample task": "sample_task",
-        "demo": "demo_module.py"
+        "demo": "demo_module.py",
+        "notes": "notes.py"
     }
 }
