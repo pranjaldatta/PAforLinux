@@ -1,0 +1,11 @@
+{
+    "available_tasks": {
+        "browse": "search a query on your default browse.\n--->Usage: $ browse <query>",                
+        "play": "play youtube in defaultl browser.\n--->Usage: $ play <youtube video>",
+        "define": "search for a meaning in Oxford dict.\n--->Usage: $ define <word/phrase>",
+        "wiki": "search for a wiki summary.\n--->Usage: $ wiki <topic>",
+        "battery": "displays current battery stats.\n--->Usage: $ battery",
+        "notes": "take notes on terminal.\n--->For more Usage info: $ notes ",
+        "cal": "display calendar for a given month.\n--->Usage: $cal <month> <year>"
+    }
+}

@@ -9,6 +9,7 @@
         "sample task": "sample_task",
         "demo": "demo_module.py",
         "notes": "notes.py",
-        "cal": "Calendar.py"
+        "cal": "Calendar.py",
+        "help": "help.py"
     }
 }
