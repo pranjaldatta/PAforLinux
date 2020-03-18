@@ -17,7 +17,7 @@ class wiki:
         if index is not None:
             query = suggest_list[int(index)-1]
         self.cli_api.show(text="Hold on! fetching results...", color='cyan')    
-        self.cli_api.show(text=wikipedia.summary(query))
+        self.cli_api.show(text=wikipedia.summary(query), dontSpeak=True)
     
     def main(self):
         _, self.params = self.params.split(" ", 1)
