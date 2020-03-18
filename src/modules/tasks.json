@@ -8,6 +8,7 @@
         "battery": "battery.py",
         "sample task": "sample_task",
         "demo": "demo_module.py",
-        "notes": "notes.py"
+        "notes": "notes.py",
+        "cal": "Calendar.py"
     }
 }
