@@ -13,7 +13,7 @@ class CommandLineAPI:
     def __init__(self):
         
         self._init_prompt = "Hello! How may I help you?"
-        f = open("./utils/prompts.txt") 
+        f = open("./src/utils/prompts.txt") 
         lines = f.read()
         lines = lines.split(",")
         lines = [x.strip() for x in lines]
