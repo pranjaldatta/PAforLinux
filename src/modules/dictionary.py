@@ -15,6 +15,7 @@ class dictionary:
         self.appID = None
         self.appKey = None
         self.base_url = None
+        self.MAX_SPEAK = 1
         with open(os.path.dirname(__file__)+"/keys.json") as f:
             data = json.load(f)
             self.appID = data[os.path.basename(__file__)]["app_id"]
@@ -33,10 +34,16 @@ class dictionary:
             r = r.json()        
             results = r["results"][0]
             #print(results['lexicalEntries'])
+            count = 1
             for res in results['lexicalEntries']:
                 if len(results['lexicalEntries']) > 1:
                     self.cli_api.show(text="------------------------------------", color="cyan")
-                self.cli_api.show(res['entries'][0]['senses'][0]['definitions'][0])
+                if count > self.MAX_SPEAK:
+                    self.cli_api.show(res['entries'][0]['senses'][0]['definitions'][0], dontSpeak=True)
+                else:
+                    self.cli_api.show(res['entries'][0]['senses'][0]['definitions'][0])
+                count += 1
+                    
         return 0
             
 def eval(cli_api, params):
